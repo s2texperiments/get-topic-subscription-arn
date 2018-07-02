@@ -15,7 +15,7 @@ exports.handler = async (event, context) => {
         case 'create':
         case 'update': {
             console.log(`Query Topic: ${TopicArn}`);
-            let subs = snsApi.listSubscriptionsByTopic({TopicArn});
+            let subs = await snsApi.listSubscriptionsByTopic({TopicArn});
             console.log(subs);
 
             let result = subs.filter(e => e.Endpoint === Endpoint);
