@@ -2,20 +2,38 @@ const snsApi = require('./snsApi.js');
 const response = require("cf-fetch-response");
 
 exports.handler = async (event, context) => {
-    
+
     let {
-        RequestType
+        RequestType,
+        ResourceProperties: {
+            TopicArn,
+            Endpoint
+        }
     } = event;
 
     switch (RequestType.toLowerCase()) {
-        case 'create': {
-                return;
-      }
+        case 'create':
         case 'update': {
-           return;
+            console.log(`Query Topic: ${TopicArn}`);
+            let subs = snsApi.listSubscriptionsByTopic({TopicArn});
+            console.log(subs);
+
+            let result = subs.filter(e => e.Endpoint === Endpoint);
+            if(result.length > 1){
+                throw `To many results for endpoint ${Endpoint}`
+            }
+            if(result.length === 0){
+                throw `No result for endpoint ${Endpoint}`
+            }
+
+            return response.sendSuccess(event, context, {
+                data: {
+                    Arn: result[0].SubscriptionArn
+                }
+            });
         }
         case 'delete': {
-          return;
+            return response.sendSuccess(event, context);
         }
     }
 };

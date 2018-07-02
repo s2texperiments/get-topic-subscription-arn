@@ -5,8 +5,7 @@ Cloudformation Custom Resource to collect SNS topic subscription arn.
 
 ```yaml
 #required
-StackName: s2t-test
-Topic: s2tTestTopic
+TopicArn: s2tTestTopic
 Endpoint: arn:aws:lambda:eu-west-1:099687127161:function:s2t-test-s2tTestLambda-1BVKDJMFRPXHA
 ```
 
