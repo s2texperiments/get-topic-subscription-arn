@@ -15,10 +15,10 @@ exports.handler = async (event, context) => {
         case 'create':
         case 'update': {
             console.log(`Query Topic: ${TopicArn}`);
-            let subs = await snsApi.listSubscriptionsByTopic({TopicArn});
-            console.log(subs);
+            let response = await snsApi.listSubscriptionsByTopic({TopicArn});
+            console.log(response);
 
-            let result = subs.filter(e => e.Endpoint === Endpoint);
+            let result = response.Subscriptions.filter(e => e.Endpoint === Endpoint);
             if(result.length > 1){
                 throw `To many results for endpoint ${Endpoint}`
             }
