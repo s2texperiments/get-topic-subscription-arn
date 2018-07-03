@@ -14,6 +14,10 @@ exports.handler = async (event, context) => {
     switch (RequestType.toLowerCase()) {
         case 'create':
         case 'update': {
+            if (!TopicArn || !Endpoint) {
+                throw `missing mandatory argument: TopicArn=${TopicArn} Endpoint=${Endpoint}`
+            }
+
             console.log(`Query Topic: ${TopicArn}`);
             let resp = await snsApi.listSubscriptionsByTopic({TopicArn});
             console.log(resp);

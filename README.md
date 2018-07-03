@@ -16,6 +16,10 @@ Throws error when:
 - no subscription arn will be founded
 - more than one subscription arn will be founded
 
+## Permission
+### Sns
+- SetSubscriptionAttributes
+
 ##Example
 ```yaml
 GetTopicSubscriptionArn: 

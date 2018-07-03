@@ -1,0 +1,12 @@
+{
+  "Subscriptions": [
+    {
+      "Endpoint": "this:is:an:unrelated:lambda:arn",
+      "SubscriptionArn": "this:is:an:unrelated:subscription:arn"
+    },
+    {
+      "Endpoint": "some@mail.com",
+      "SubscriptionArn": "this:is:an:mail:subscription:arn"
+    }
+  ]
+}
